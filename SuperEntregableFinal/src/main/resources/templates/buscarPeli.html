@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Buscar Peli</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+</head>
+<body>
+	<h3>Germán Sánchez Portillo</h3>
+	<div class="container">
+        <div class="row justify-content-center align-items-start mt-5 mb-4">
+            <div class="col-6 border border-4 p-5">
+				<form th:action="@{/pelis/mostrarPeli}" th:object="${pelicula}" method="get" class="row g-3">
+					<div class="form-floating">
+  						<input type="text" th:field="*{titulo}" class="form-control"  placeholder="Nombre de la pelicula"></input>
+  						<label>Pelicula</label>
+					</div>						
+
+					<div class="d-grid gap-2 px-5 mt-3">
+						<button type="submit" class="btn btn-primary">Buscar</button>
+					</div>
+				</form>
+				<form th:action="@{/pelis/mostrarPeli}" method="get">
+        			<div class="d-grid gap-2 px-5 mt-3">
+						<button type="submit" class="btn btn-primary">Atrás</button>
+						
+         			</div>
+    			</form>
+    				<span th:if="${repe}">
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  						<strong>Pelicula ya Añadida </strong>La pelicula ya se añadió anteriormente.
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				</span>
+			</div>
+			
+		</div>
+	</div>
+	
+	<div class="container">
+        <div class="row justify-content-center align-items-start mt-3 mb-4">
+            <div class="col-6 p-5">
+            	<span th:if="${tabla}">	
+		            <form th:action="@{/pelis/busquedaPelis}" th:object="${resultado}">
+		            	<table class="table table-striped" >
+					  		<tr>
+					  			<th>Titulo</th>
+					  			<th><p th:text="*{titulo}"></p></th>
+					  		</tr>
+					  		<tr>
+					  			<th>Director</th>
+					  			<th><p th:text="*{director}"></p></th>
+					  		</tr>
+					  		<tr>
+					  			<th>Años</th>
+					  			<th><p th:text="*{year}"></p></th>
+					  		</tr>
+					  		<tr>
+					  			<th>Duración</th>
+					  			<th><p th:text="*{duracion}"></p></th>
+					  		</tr>
+					  		<tr>
+					  			<th>Poster</th>
+					  			<th><img th:src="*{poster}"></th>
+					  		</tr>	
+						</table>
+		            </form>
+	
+					<form th:action="@{/pelis/guardarPeli}" method="get">
+	        			<div class="d-grid gap-2 px-5 mt-3">
+							<button type="submit" class="btn btn-primary">Guardar Pelicula</button>
+	         			</div>
+	    			</form>
+				</span>
+				<div class="mb-5 mt-3" th:object="${usuario}">
+				<label  class="form-label">Usuario en uso: <span th:text="*{nombre}"></span> </label> 	
+			</div>
+			</div>
+		</div>
+	</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+	
+</body>
+</html>

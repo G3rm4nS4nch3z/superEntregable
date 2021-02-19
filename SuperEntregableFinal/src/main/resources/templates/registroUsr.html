@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Registrar Usuario</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+</head>
+<body>
+<h3>Germán Sánchez Portillo</h3>
+<div class="container">
+        <div class="row justify-content-center align-items-start mt-5 mb-4">
+            <div class="col-6 border border-4 p-5">
+				<form th:action="@{/pelis/registrarUsuario}" th:object="${usuario}" method="post"  class="row g-3">
+					<div class="col-md-6">
+						<label class="form-label">Email</label>
+						<input type="email"  th:field="*{email}" class="form-control">
+			  		</div>
+			  		<div class="col-md-6">
+			   	 		<label class="form-label">Password</label>
+			    		<input type="password"  th:field="*{password}" class="form-control">
+			  		</div>
+			  		<div class="col-12">
+			    		<label class="form-label">Nombre</label>
+			    		<input type="text"  th:field="*{nombre}" class="form-control"placeholder="Tu nombre aquí">
+			  		</div>
+			  		<div class="col-12">
+			    		<label class="form-label">Apellios</label>
+			    		<input type="text"  th:field="*{apellido}" class="form-control" placeholder="Primer y segundo apellido">
+			  		</div>
+			  		<div  class="d-grid gap-2 px-5 mt-3">
+			    		<button type="submit" class="btn btn-primary">Sign in</button>
+			  		</div>
+				</form>
+				<form th:action="@{/pelis/inicioUsuario}" method="get">
+        			<div class="d-grid gap-2 px-5 mt-3">
+						<button type="submit" class="btn btn-primary">Volver</button>
+         			</div>
+    			</form>
+    			<span th:if="${existe}">
+					<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  						<strong>El correo ya esta en uso </strong>Pruebe con otro correo electrónico.
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				</span>
+			</div>
+		</div>
+	</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+	
+</body>
+</html>
